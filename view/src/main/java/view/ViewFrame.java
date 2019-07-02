@@ -129,9 +129,6 @@ class ViewFrame extends JFrame implements KeyListener {
 	 *
 	 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
 	 */
-	public void keyTyped(final KeyEvent e) {
-
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -153,6 +150,12 @@ class ViewFrame extends JFrame implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
 	}

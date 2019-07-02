@@ -2,11 +2,13 @@ package view;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 /**
@@ -23,12 +25,6 @@ class ViewPanel extends JPanel implements Observer {
 
 	/** The default sprite size. */
 	private static int DEFAULT_SPRITE_SIZE = 16;
-
-	/** The largecamera. */
-	private static boolean LARGECAMERA = false;
-
-	/** The zoom. */
-	private double zoom = 2.4;
 
 	/** The img. */
 	private Image img;
@@ -47,19 +43,14 @@ class ViewPanel extends JPanel implements Observer {
 		this.setViewFrame(viewFrame);
 		viewFrame.getModel().getObservable().addObserver(this);
 		this.img = null;
-		// try {
-		// Load font image
-		// img = ImageIO.read(new
-		// File("..\\entity\\src\\main\\resources\\sprite\\background.png"));
-		// } catch (IOException e) {
-		// e.printStackTrace();
-		// }
+		try {
+			// Load font image
+			img = ImageIO.read(new File("..\\entity\\src\\main\\resources\\sprite\\wall.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		// Get Map design
-		// mapDesign = this.getViewFrame().getModel().getMap().getMapDesign();
-		// Get Timers
-		/*
-		 * this.getViewFrame().setTotalCount(0); this.getViewFrame().setCount(0);
-		 */
+		mapDesign = this.getViewFrame().getModel().getMap().getMapDesign();
 	}
 
 	/**
@@ -115,6 +106,10 @@ class ViewPanel extends JPanel implements Observer {
 		if (this.getViewFrame().getModel().getMap().getPlayer() != null) {
 			// Clear the ViewPanel
 			graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+			// Set the ViewPanel Properties
+			super.paintComponent(graphics);
+			graphics.fillRect(0, 0, getWidth(), getHeight());
+			graphics.drawImage(img, 0, 0, 1920, 1080, this);
 
 			// Draw all Elements
 			for (int y = 0; y < this.getViewFrame().getModel().getMap().getWidth(); y++) {
@@ -127,6 +122,9 @@ class ViewPanel extends JPanel implements Observer {
 			graphics.setColor(new Color(0x4240ff));// Blue : 0x4240ff
 
 		}
+		// Get Map design
+		this.mapDesign = this.getViewFrame().getModel().getMap().getMapDesign();
 
 	}
+
 }
