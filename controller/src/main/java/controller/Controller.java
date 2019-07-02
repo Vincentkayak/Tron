@@ -1,5 +1,7 @@
 package controller;
 
+import java.sql.SQLException;
+
 import contract.ControllerOrder;
 import contract.IController;
 import contract.IModel;
@@ -7,6 +9,9 @@ import contract.IView;
 
 /**
  * The Class Controller.
+ *
+ * @author Jean michel crapaud The class Controller Saved as file
+ *         Controller.java
  */
 public final class Controller implements IController {
 
@@ -16,14 +21,20 @@ public final class Controller implements IController {
 	/** The model. */
 	private IModel model;
 
+	/** The map. */
+	private int map;
+
 	/**
 	 * Instantiates a new controller.
 	 *
 	 * @param view  the view
 	 * @param model the model
 	 */
+	// Controller constructor
 	public Controller(final IView view, final IModel model) {
+		// Set the View
 		this.setView(view);
+		// Set the Model
 		this.setModel(model);
 	}
 
@@ -35,16 +46,13 @@ public final class Controller implements IController {
 	 *
 	 * @see contract.IController#control()
 	 */
-	public void control() {
-		this.view.printMessage(
-				"Appuyer sur les touches 'E', 'F', 'D' ou 'I', pour afficher Hello world dans la langue d votre choix.");
-	}
 
 	/**
 	 * Sets the view.
 	 *
 	 * @param pview the new view
 	 */
+	// Set the View
 	private void setView(final IView pview) {
 		this.view = pview;
 	}
@@ -54,6 +62,7 @@ public final class Controller implements IController {
 	 *
 	 * @param model the new model
 	 */
+	// Set the Model
 	private void setModel(final IModel model) {
 		this.model = model;
 	}
@@ -62,29 +71,123 @@ public final class Controller implements IController {
 	 * Order perform.
 	 *
 	 * @param controllerOrder the controller order
+	 * @throws Exception exception
 	 */
 	/*
 	 * (non-Javadoc)
 	 *
 	 * @see contract.IController#orderPerform(contract.ControllerOrder)
 	 */
-	public void orderPerform(final ControllerOrder controllerOrder) {
+	// Get user orders
+	/*public void orderPerform(final ControllerOrder controllerOrder) throws Exception {
 		switch (controllerOrder) {
-		case English:
-			this.model.loadHelloWorld("GB");
+		// To Move Player
+		case NOTHING:
 			break;
-		case Francais:
-			this.model.loadHelloWorld("FR");
+		case LEFT: {
+			// Move the Player
+			this.model.getMap().getPlayer().movePlayer(this.model.getMap().getPlayer().chooseDirection(3));
+			// Notify changes
+			this.model.modelNotify();
+		}
 			break;
-		case Deutsch:
-			this.model.loadHelloWorld("DE");
-			break;
-		case Indonesia:
-			this.model.loadHelloWorld("ID");
+		case RIGHT: {
+			// Move the Player
+			this.model.getMap().getPlayer().movePlayer(this.model.getMap().getPlayer().chooseDirection(4));
+			// Notify changes
+			this.model.modelNotify();
+		}
 			break;
 		default:
-			break;
+			throw new Exception("Invalid order");
 		}
+
+	}*/
+
+	/**
+	 * Play.
+	 *
+	 * @throws InterruptedException the interrupted exception
+	 */
+	// Game loop
+	public final void play() throws InterruptedException {
+		int moveOn = 1;
+		while (true) {
+			Thread.sleep(300);
+			/*if (moveOn == 2) {
+				// Refresh Opponents
+				this.model.getMap().getOpponent().forEach((opponent) -> {
+					try {
+						opponent.refreshOpponents();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				});
+				// Notify changes
+				this.model.modelNotify();
+				moveOn = 1;
+			} else*/ {
+				moveOn++;
+			};
+			// Notify changes
+			this.model.modelNotify();
+			// Stop the Game
+			//endOfGame();
+		}
+
+	}
+
+	/**
+	 * End of game.
+	 *
+	 * @throws InterruptedException the interrupted exception
+	 */
+	// Stop the Game
+	/*public void endOfGame() throws InterruptedException {
+		// Stop the Game if Player is dead
+		if (this.model.getMap().getPlayer().isAlive() == false) {
+			this.view.printMessage("Blurp !");
+			System.exit(0);
+		}
+	}*/
+
+	/**
+	 * Gets the map.
+	 *
+	 * @return the map
+	 */
+	// Get the Map
+	public int getMap() {
+		return map;
+	}
+
+	/**
+	 * Sets the map.
+	 *
+	 * @param map the new map
+	 * @throws Exception    exception
+	 * @throws SQLException SQLException
+	 */
+	// Set the Map
+	public void setMap(int map) throws SQLException, Exception {
+		// Set the Map
+		this.map = map;
+		// Load the Map
+		this.model.loadMap(map);
+		// Map information message
+		this.view.printMessage("Current level: " + map);
+	}
+
+	@Override
+	public void control() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void orderPerform(ControllerOrder controllerOrder) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

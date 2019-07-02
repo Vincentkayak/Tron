@@ -12,23 +12,34 @@ import view.View;
 /**
  * The Class Main.
  *
- * @author Jean-Aymeric Diet
+ * @author Jean michel crapaud The class Main Saved as file Main.java
  */
 public abstract class Main {
 
-    /**
-     * The main method.
-     *
-     * @param args
-     *            the arguments
-     */
-    public static void main(final String[] args) {
-        final Model model = new Model();
-        final View view = new View(model);
-        final Controller controller = new Controller(view, model);
-        view.setController(controller);
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 * @throws Exception exception
+	 */
 
-        controller.control();
-        controller.orderPerform(ControllerOrder.English);
-    }
+	public static void main(final String[] args) throws Exception {
+
+		// Load the Game Model
+		final Model model = new Model();
+
+		// Load the Game View
+		final View view = new View(model);
+
+		// Set the controller
+		final Controller controller = new Controller(view, model);
+		view.setController(controller);
+
+		// Set default Game controller properties
+		controller.control();
+		controller.orderPerform(ControllerOrder.NOTHING);
+
+		// Start Game
+		controller.play();
+	}
 }

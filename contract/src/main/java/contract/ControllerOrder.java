@@ -3,16 +3,16 @@ package contract;
 /**
  * The Enum ControllerOrder.
  *
- * @author Jean-Aymeric Diet
+ * @author Jean michel crapaud The class ControllerOrder Saved as file
+ *         ControllerOrder.java
  */
 public enum ControllerOrder {
-
-	/** The English. */
-	English,
-	/** The French. */
-	Francais,
-	/** The Deutch. */
-	Deutsch,
-	/** The Indonesia. */
-	Indonesia
+	
+	// To choose the Player direction
+	/** No action performed. */
+	NOTHING,
+	/** The left. */
+	LEFT,
+	/** The right. */
+	RIGHT
 }

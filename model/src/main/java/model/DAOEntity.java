@@ -3,7 +3,7 @@ package model;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import entity.Entity;
+import entity.Element;
 
 /**
  * The Class DAOEntity.
@@ -13,7 +13,7 @@ import entity.Entity;
  * @param <E>
  *          the element type
  */
-abstract class DAOEntity<E extends Entity> {
+abstract class DAOEntity<E extends Element> {
 
 	/** The connection. */
 	private final Connection connection;

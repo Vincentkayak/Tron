@@ -76,6 +76,7 @@ class ViewFrame extends JFrame implements KeyListener {
 	 *
 	 * @return the controller
 	 */
+	@SuppressWarnings("unused")
 	private IController getController() {
 		return this.controller;
 	}
@@ -123,15 +124,6 @@ class ViewFrame extends JFrame implements KeyListener {
 		this.setLocationRelativeTo(null);
 	}
 
-	/**
-	 * Prints the message.
-	 *
-	 * @param message the message
-	 */
-	public void printMessage(final String message) {
-		JOptionPane.showMessageDialog(null, message);
-	}
-
 	/*
 	 * (non-Javadoc)
 	 *
@@ -146,9 +138,9 @@ class ViewFrame extends JFrame implements KeyListener {
 	 *
 	 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
 	 */
-	public void keyPressed(final KeyEvent e) {
+	/*public void keyPressed(final KeyEvent e) {
 		this.getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));
-	}
+	}*/
 
 	/*
 	 * (non-Javadoc)
@@ -157,5 +149,11 @@ class ViewFrame extends JFrame implements KeyListener {
 	 */
 	public void keyReleased(final KeyEvent e) {
 
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

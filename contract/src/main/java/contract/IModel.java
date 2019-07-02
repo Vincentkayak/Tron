@@ -1,30 +1,32 @@
 package contract;
 
+import java.sql.SQLException;
 import java.util.Observable;
 
-import entity.HelloWorld;
+import entity.Map;
 
 /**
  * The Interface IModel.
  *
- * @author Jean-Aymeric Diet
+ * @author Jean michel crapaud The class IModel Saved as file IModel.java
  */
 public interface IModel {
 
 	/**
 	 * Gets the hello world.
 	 *
-	 * @return the helloworld entity
+	 * @return the map entity
 	 */
-	HelloWorld getHelloWorld();
+	Map getMap();
 
 	/**
-	 * Load the message.
+	 * Load the Map.
 	 *
-	 * @param code
-	 *          the code
+	 * @param i the code
+	 * @throws Exception exception
+	 * @throws SQLException SQLException
 	 */
-	void loadHelloWorld(String code);
+	void loadMap(int i) throws SQLException, Exception;
 
 	/**
 	 * Gets the observable.
@@ -32,4 +34,10 @@ public interface IModel {
 	 * @return the observable
 	 */
 	Observable getObservable();
+
+	/**
+	 * Model notify.
+	 */
+	void modelNotify();
+
 }

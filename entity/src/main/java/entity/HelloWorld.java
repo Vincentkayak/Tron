@@ -1,5 +1,7 @@
 package entity;
 
+import com.sun.xml.internal.stream.Entity;
+
 /**
  * The Class HelloWorld.
  *
@@ -94,6 +96,18 @@ public class HelloWorld extends Entity {
 	 */
 	public void setMessage(final String message) {
 		this.message = message;
+	}
+
+	@Override
+	public boolean isExternal() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isUnparsed() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

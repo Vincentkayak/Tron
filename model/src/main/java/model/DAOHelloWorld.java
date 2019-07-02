@@ -5,104 +5,66 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import entity.HelloWorld;
+import entity.Map;
+
 
 /**
- * The Class DAOHelloWorld.
+ * The Class DAOMap.
  *
- * @author Jean-Aymeric Diet
+ * @author Jean michel crapaud
+ * DAOMap
+ * DAOMap.java
+ * @param <M> the generic type
  */
-class DAOHelloWorld extends DAOEntity<HelloWorld> {
+class DAOMap<M extends Map> {
+
+	/** The connection. */
+	private Connection connection;
 
 	/**
-	 * Instantiates a new DAO hello world.
+	 * Instantiates a new DAO Map.
 	 *
 	 * @param connection
 	 *          the connection
 	 * @throws SQLException
 	 *           the SQL exception
 	 */
-	public DAOHelloWorld(final Connection connection) throws SQLException {
-		super(connection);
+	// DAOMap constructor
+	public DAOMap(final Connection connection) throws SQLException {
+		this.connection = connection;
+	}
+	
+	/**
+	 * Gets the connection.
+	 *
+	 * @return the connection
+	 */
+	// GEt the database connection
+	protected Connection getConnection() {
+		return this.connection;
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Find.
 	 *
-	 * @see model.DAOEntity#create(model.Entity)
+	 * @param id the id
+	 * @return the map
+	 * @throws Exception exception
 	 */
-	@Override
-	public boolean create(final HelloWorld entity) {
-		// Not implemented
-		return false;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see model.DAOEntity#delete(model.Entity)
-	 */
-	@Override
-	public boolean delete(final HelloWorld entity) {
-		// Not implemented
-		return false;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see model.DAOEntity#update(model.Entity)
-	 */
-	@Override
-	public boolean update(final HelloWorld entity) {
-		// Not implemented
-		return false;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see model.DAOEntity#find(int)
-	 */
-	@Override
-	public HelloWorld find(final int id) {
-		HelloWorld helloWorld = new HelloWorld();
-
+	// Find Map in database using ID
+	public Map find(final int id) throws Exception {
 		try {
-			final String sql = "{call helloworldById(?)}";
+			// Call the 'mapById' SQL procedure in MySQL
+			final String sql = "{call mapById(?)}";
 			final CallableStatement call = this.getConnection().prepareCall(sql);
 			call.setInt(1, id);
 			call.execute();
+			// Get the call result
 			final ResultSet resultSet = call.getResultSet();
 			if (resultSet.first()) {
-				helloWorld = new HelloWorld(id, resultSet.getString("code"), resultSet.getString("message"));
+				// Create a new Map
+				return new Map();
 			}
-			return helloWorld;
-		} catch (final SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see model.DAOEntity#find(java.lang.String)
-	 */
-	@Override
-	public HelloWorld find(final String code) {
-		HelloWorld helloWorld = new HelloWorld();
-
-		try {
-			final String sql = "{call helloworldByCode(?)}";
-			final CallableStatement call = this.getConnection().prepareCall(sql);
-			call.setString(1, code);
-			call.execute();
-			final ResultSet resultSet = call.getResultSet();
-			if (resultSet.first()) {
-				helloWorld = new HelloWorld(resultSet.getInt("id"), code, resultSet.getString("message"));
-			}
-			return helloWorld;
 		} catch (final SQLException e) {
 			e.printStackTrace();
 		}

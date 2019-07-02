@@ -1,10 +1,12 @@
 package model;
 
 import java.sql.SQLException;
+
 import java.util.Observable;
 
 import contract.IModel;
 import entity.HelloWorld;
+import entity.Map;
 
 /**
  * The Class Model.
@@ -15,6 +17,7 @@ public final class Model extends Observable implements IModel {
 
 	/** The helloWorld. */
 	private HelloWorld helloWorld;
+	private Map map;
 
 	/**
 	 * Instantiates a new model.
@@ -43,8 +46,8 @@ public final class Model extends Observable implements IModel {
      * @param helloWorld
      *            the new hello world
      */
-	private void setHelloWorld(final HelloWorld helloWorld) {
-		this.helloWorld = helloWorld;
+	private void setMap(final Map map) {
+		this.map = map;
 		this.setChanged();
 		this.notifyObservers();
 	}
@@ -60,14 +63,14 @@ public final class Model extends Observable implements IModel {
 	 *
 	 * @see contract.IModel#getMessage(java.lang.String)
 	 */
-	public void loadHelloWorld(final String code) {
+	/*public void loadHelloWorld(final String code) {
 		try {
 			final DAOHelloWorld daoHelloWorld = new DAOHelloWorld(DBConnection.getInstance().getConnection());
 			this.setHelloWorld(daoHelloWorld.find(code));
 		} catch (final SQLException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	/**
      * Gets the observable.
@@ -81,5 +84,23 @@ public final class Model extends Observable implements IModel {
 	 */
 	public Observable getObservable() {
 		return this;
+	}
+
+	@Override
+	public Map getMap() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void loadMap(int i) throws SQLException, Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void modelNotify() {
+		// TODO Auto-generated method stub
+		
 	}
 }
