@@ -13,12 +13,12 @@ public class Map {
 	// Map constructor
 	public Map() throws Exception {
 		// Set the level Map design
-		this.setMapDesign(content);
+		this.setMapDesign(mapDesign);
 		// Set the different Map objects
 		this.setMapObjects();
 	}
 
-	private String content = "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww\r\n"
+	private String mapDesign = "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww\r\n"
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
@@ -72,7 +72,7 @@ public class Map {
 	
 	// Get the level Map design
 	public String getMapDesign() {
-		return this.content;
+		return this.mapDesign;
 	}
 	
 	/**
@@ -81,8 +81,8 @@ public class Map {
 	 * @param message the new message
 	 */
 	// Set the level Map design
-	public void setMapDesign(final String content) {
-		this.content = content.replace("\r", "");
+	public void setMapDesign(final String mapDesign) {
+		this.mapDesign = mapDesign.replace("\r", "");
 		// Get the Map dimension
 		getHeight();
 		getWidth();
@@ -95,7 +95,7 @@ public class Map {
 	 */
 	// Get the vertical Map dimension
 	public int getHeight() {
-		int lines = this.content.split("\n").length;
+		int lines = this.mapDesign.split("\n").length;
 //		System.out.println("Lines: " + lines);
 		return lines;
 	}
