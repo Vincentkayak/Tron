@@ -18,9 +18,6 @@ public class Player extends MobileElement {
 	/** The Constant DIRECTION. */
 	private static final Direction DIRECTION = null;
 	
-	/** The diamond count. */
-	private int diamondCount;
-	
 	/** The state. */
 	private boolean state;
 
@@ -45,30 +42,18 @@ public class Player extends MobileElement {
 	 * @throws Exception exception
 	 */
 	// Move Player method
-	/*public void movePlayer(Direction direction) throws Exception {
+	public void movePlayer(Direction direction) throws Exception {
 		switch (direction) {
-		case UP:
-			// Change Player position
-			this.changePosition(0, -1);
-			// Set the good Player's Sprite 
-			this.setSprite(SPRITE);
-			break;
-		case DOWN:
-			this.changePosition(0, +1);
-			this.setSprite(SPRITE_DOWN);
-			break;
 		case LEFT:
 			this.changePosition(-1, 0);
-			this.setSprite(SPRITE_LEFT);
 			break;
 		case RIGHT:
 			this.changePosition(+1, 0);
-			this.setSprite(SPRITE_RIGHT);
 			break;
 		case NOTHING:
 			break;
 		}
-	}*/
+	}
 
 	/**
 	 * Checks if is alive.

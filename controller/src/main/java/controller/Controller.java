@@ -21,9 +21,6 @@ public final class Controller implements IController {
 	/** The model. */
 	private IModel model;
 
-	/** The map. */
-	private int map;
-
 	/**
 	 * Instantiates a new controller.
 	 *
@@ -152,16 +149,6 @@ public final class Controller implements IController {
 	}*/
 
 	/**
-	 * Gets the map.
-	 *
-	 * @return the map
-	 */
-	// Get the Map
-	public int getMap() {
-		return map;
-	}
-
-	/**
 	 * Sets the map.
 	 *
 	 * @param map the new map
@@ -170,12 +157,8 @@ public final class Controller implements IController {
 	 */
 	// Set the Map
 	public void setMap(int map) throws SQLException, Exception {
-		// Set the Map
-		this.map = map;
 		// Load the Map
 		this.model.loadMap(map);
-		// Map information message
-		this.view.printMessage("Current level: " + map);
 	}
 
 	@Override

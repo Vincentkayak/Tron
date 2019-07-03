@@ -42,12 +42,8 @@ public abstract class MobileElement extends Element {
 	public Direction chooseDirection(int choice) throws Exception {
 		switch (choice) {
 		case 1:
-			return Direction.UP;
-		case 2:
-			return Direction.DOWN;
-		case 3:
 			return Direction.LEFT;
-		case 4:
+		case 2:
 			return Direction.RIGHT;
 		default:
 			throw new Exception("Expected Direction id out of range");

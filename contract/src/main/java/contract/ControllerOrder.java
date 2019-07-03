@@ -7,6 +7,8 @@ package contract;
  *         ControllerOrder.java
  */
 public enum ControllerOrder {
+
+	// The different possible user orders:
 	
 	// To choose the Player direction
 	/** No action performed. */

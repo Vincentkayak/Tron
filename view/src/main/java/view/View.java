@@ -1,7 +1,10 @@
 package view;
 
+import java.awt.event.KeyEvent;
+
 import javax.swing.SwingUtilities;
 
+import contract.ControllerOrder;
 import contract.IController;
 import contract.IModel;
 import contract.IView;
@@ -9,20 +12,23 @@ import contract.IView;
 /**
  * The Class View.
  *
- * @author Jean-Aymeric Diet
+ * @author Jean michel crapaud
+ * The class View
+ * Saved as file View.java
  */
 public final class View implements IView, Runnable {
 
 	/** The frame. */
-	private final ViewFrame viewFrame;
+	protected final ViewFrame viewFrame;
 
 	/**
 	 * Instantiates a new view.
 	 *
-	 * @param model
-	 *          the model
+	 * @param model the model
 	 */
+	// View constructor
 	public View(final IModel model) {
+		// Set the View Frame
 		this.viewFrame = new ViewFrame(model);
 		SwingUtilities.invokeLater(this);
 	}
@@ -30,29 +36,29 @@ public final class View implements IView, Runnable {
 	/**
 	 * Key code to controller order.
 	 *
-	 * @param keyCode
-	 *          the key code
+	 * @param keyCode the key code
 	 * @return the controller order
 	 */
-	/*protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
+	// Translate Key codes to Controller orders
+	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
 		switch (keyCode) {
-			case KeyEvent.VK_G:
-				return ControllerOrder.English;
-			case KeyEvent.VK_F:
-				return ControllerOrder.Francais;
-			case KeyEvent.VK_D:
-				return ControllerOrder.Deutsch;
-			case KeyEvent.VK_I:
-				return ControllerOrder.Indonesia;
+				
+			// To choose the Player direction
+			case KeyEvent.VK_LEFT:
+				return ControllerOrder.LEFT;
+			case KeyEvent.VK_RIGHT:
+				return ControllerOrder.RIGHT;
+			case KeyEvent.VK_ESCAPE:
+				System.exit(0);
 			default:
-				return ControllerOrder.English;
+				return ControllerOrder.NOTHING;
 		}
-	}*/
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see java.lang.Runnable#run()
+	}
+
+	/**
+	 * Run.
 	 */
+	// Set the View Frame visible
 	public void run() {
 		this.viewFrame.setVisible(true);
 	}
@@ -60,9 +66,9 @@ public final class View implements IView, Runnable {
 	/**
 	 * Sets the controller.
 	 *
-	 * @param controller
-	 *          the new controller
+	 * @param controller the new controller
 	 */
+	// Set the View Frame controller
 	public void setController(final IController controller) {
 		this.viewFrame.setController(controller);
 	}

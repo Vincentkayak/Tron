@@ -1,5 +1,8 @@
 package entity;
 
+import mobileelement.Player;
+import motionlesselement.Ground;
+
 /**
  * The Class Element.
  *
@@ -19,8 +22,8 @@ public abstract class Element {
 	/** The collision. 
 	private Collision collision;*/
 	
-	/** The objects.
-	private Element[][] objects;*/
+	/** The objects.*/
+	private Element[][] objects;
 
 	/**
 	 * Instantiates a new element.
@@ -80,7 +83,7 @@ public abstract class Element {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	//}
+	}
 
 	/**
 	 * Change position by checking collision depending type of element .
@@ -90,28 +93,28 @@ public abstract class Element {
 	 * @throws Exception exception
 	 */
 	// Change the Element position
-	/*public void changePosition(int x, int y) throws Exception {
+	public void changePosition(int x, int y) throws Exception {
 		// Get the current X and Y pos in the Map
 		int currentX = this.getPosition().getX();
 		int currentY = this.getPosition().getY();
 		// Get the Element at the current pos
 		this.objects = this.getMap().getMapObjects();
 		// Check for collision
-		this.collision = new Collision(this.map);
+		//this.collision = new Collision(this.map);
 		// Player collisions
 		if (this instanceof Player) {
 			// Permit Player to push Stones
-			this.collision.moveStoneByPlayer(currentX + x, currentY);
+			//this.collision.moveStoneByPlayer(currentX + x, currentY);
 			// Check Collisions before moved Player
-			if (this.collision.checkCollision(currentX + x, currentY + y)) {
+			//if (this.collision.checkCollision(currentX + x, currentY + y)) {
 				// Check if the Player is on a Diamond
-				this.getDiamond(currentX + x, currentY + y);
+				//this.getDiamond(currentX + x, currentY + y);
 				// Move the Player
 				this.objects[currentX + x][currentY + y] = this.objects[currentX][currentY];
 				this.objects[currentX][currentY] = new Ground(currentX, currentY);
 				this.setPosition(currentX + x, currentY + y);
 			}
-		}*/
+		}
 		
 		// Opponent collisions
 		/*if (this instanceof Opponent) {
@@ -148,7 +151,7 @@ public abstract class Element {
 			if (this.collision.checkBellow(currentX, currentY + 1)) {
 				this.collision.gravityFall(currentX, currentY);
 			}
-		}*/
+		}
 
 		// Diamond collisions
 		/*if (this instanceof Diamond) {
@@ -170,7 +173,7 @@ public abstract class Element {
 				this.collision.gravityFall(currentX, currentY);
 			}
 		}*/
-	}
+	//}
 
 	/**
 	 * Gets the map.
