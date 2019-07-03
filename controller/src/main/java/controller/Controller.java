@@ -76,7 +76,7 @@ public final class Controller implements IController {
 	 * @see contract.IController#orderPerform(contract.ControllerOrder)
 	 */
 	// Get user orders
-	/*public void orderPerform(final ControllerOrder controllerOrder) throws Exception {
+	public void orderPerform(final ControllerOrder controllerOrder) throws Exception {
 		switch (controllerOrder) {
 		// To Move Player
 		case NOTHING:
@@ -99,7 +99,7 @@ public final class Controller implements IController {
 			throw new Exception("Invalid order");
 		}
 
-	}*/
+	}
 
 	/**
 	 * Play.
@@ -108,7 +108,7 @@ public final class Controller implements IController {
 	 */
 	// Game loop
 	public final void play() throws InterruptedException {
-		int moveOn = 1;
+		//int moveOn = 1;
 		while (true) {
 			Thread.sleep(300);
 			/*if (moveOn == 2) {
@@ -124,7 +124,7 @@ public final class Controller implements IController {
 				this.model.modelNotify();
 				moveOn = 1;
 			} else*/ {
-				moveOn++;
+				//moveOn++;
 			};
 			// Notify changes
 			this.model.modelNotify();
@@ -163,12 +163,6 @@ public final class Controller implements IController {
 
 	@Override
 	public void control() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void orderPerform(ControllerOrder controllerOrder) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}

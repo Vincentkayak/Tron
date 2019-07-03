@@ -103,6 +103,7 @@ class ViewPanel extends JPanel implements Observer {
 	@Override
 	protected void paintComponent(final Graphics graphics) {
 
+
 		if (this.getViewFrame().getModel().getMap().getPlayer() != null) {
 			// Clear the ViewPanel
 			graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
