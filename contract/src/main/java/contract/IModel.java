@@ -5,11 +5,6 @@ import java.util.Observable;
 
 import entity.Map;
 
-/**
- * The Interface IModel.
- *
- * @author Jean michel crapaud The class IModel Saved as file IModel.java
- */
 public interface IModel {
 
 	/**
@@ -26,7 +21,7 @@ public interface IModel {
 	 * @throws Exception exception
 	 * @throws SQLException SQLException
 	 */
-	void loadMap(int i) throws SQLException, Exception;
+	void loadMap();
 
 	/**
 	 * Gets the observable.
@@ -39,5 +34,7 @@ public interface IModel {
 	 * Model notify.
 	 */
 	void modelNotify();
+
+	void loop();
 
 }

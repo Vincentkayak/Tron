@@ -1,78 +1,61 @@
 package entity;
 
-import java.awt.image.BufferedImage;
+import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-/**
- * The Class Sprite.
- *
- * @author Jean michel crapaud
- * The class Sprite
- * Saved as file Sprite.java
- */
 public class Sprite {
 
-	/** The image name. */
-	private String sprite_name;
-	
-	/** The img. */
-	private BufferedImage img;
+	private Image image;
+	private String imageName;
+	private char consoleImage;
+	private boolean imageLoaded;
 
-	/**
-	 * Instantiates a new sprite.
-	 *
-	 * @param sprite_name the sprite name
-	 */
-	// Sprite constructor
-	public Sprite(final String sprite_name) {
-		// Set the Sprite name
-		this.setSpriteName(sprite_name);
-		// Set the Sprite image
-		this.img = this.loadSprite(this.sprite_name);
+	public Sprite(final char character, final String imageName) {
+		this.setConsoleImage(character);
+		this.setImageName(imageName);
 	}
 
-	/**
-	 * Sets the sprite name.
-	 *
-	 * @return sprite_name Sprite name
-	 * @throws Exception exception
-	 */
-	// Set the Sprite name
-	public String getSpriteName() throws Exception{
-		return this.sprite_name;
+	public Sprite(final char character) {
+		this(character, "wall.jpg");
 	}
-	
-	public void setSpriteName(String sprite_name) {
-		this.sprite_name = sprite_name;
-	}
-	
-	/**
-	 * Load sprite.
-	 *
-	 * @param sprite_name the sprite name
-	 * @return the buffered image
-	 */
-	// Load the Sprite File
-	public BufferedImage loadSprite(String sprite_name) {
-		try {
-			return ImageIO.read(new File("..\\entity\\src\\main\\resources\\sprite\\" + sprite_name  + ".png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 
-		return null;
+	public final Image getImage() {
+		return this.image;
 	}
-	
-	/**
-	 * Gets the image.
-	 *
-	 * @return the image
-	 */
-	// Set the Sprite image
-	public BufferedImage getImage() {
-		return this.img;
+
+	public final void loadImage() throws IOException {
+		this.setImage(ImageIO.read(new File("..\\entity\\src\\main\\resources\\sprite\\" + this.getImageName())));
 	}
+
+	public final char getConsoleImage() {
+		return this.consoleImage;
+	}
+
+	private void setImage(final Image image) {
+		this.image = image;
+	}
+
+	private void setConsoleImage(final char consoleImage) {
+		this.consoleImage = consoleImage;
+	}
+
+	public final String getImageName() {
+		return this.imageName;
+	}
+
+	private void setImageName(final String imageName) {
+		this.imageName = imageName;
+	}
+
+	public final boolean isImageLoaded() {
+		return this.imageLoaded;
+	}
+
+	public final void setImageLoaded(final boolean isImageLoaded) {
+		this.imageLoaded = isImageLoaded;
+	}
+
 }

@@ -39,7 +39,5 @@ public abstract class Main {
 		controller.control();
 		controller.orderPerform(ControllerOrder.NOTHING);
 
-		// Start Game
-		controller.play();
 	}
 }

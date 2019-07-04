@@ -42,14 +42,14 @@ public final class View implements IView, Runnable {
 	// Translate Key codes to Controller orders
 	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
 		switch (keyCode) {
-				
-			// To choose the Player direction
-			case KeyEvent.VK_LEFT:
+			case KeyEvent.VK_Q:
+				return ControllerOrder.Q;
+			case KeyEvent.VK_D:
+				return ControllerOrder.D;
+			case KeyEvent.VK_KP_LEFT:
 				return ControllerOrder.LEFT;
-			case KeyEvent.VK_RIGHT:
+			case KeyEvent.VK_KP_RIGHT:
 				return ControllerOrder.RIGHT;
-			case KeyEvent.VK_ESCAPE:
-				System.exit(0);
 			default:
 				return ControllerOrder.NOTHING;
 		}
@@ -73,9 +73,8 @@ public final class View implements IView, Runnable {
 		this.viewFrame.setController(controller);
 	}
 
-	@Override
-	public void printMessage(String message) {
-		// TODO Auto-generated method stub
-		
+	
+	public void printMessage(final String message) {
+		this.viewFrame.printMessage(message);
 	}
 }

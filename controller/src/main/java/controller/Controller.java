@@ -76,95 +76,28 @@ public final class Controller implements IController {
 	 * @see contract.IController#orderPerform(contract.ControllerOrder)
 	 */
 	// Get user orders
-	public void orderPerform(final ControllerOrder controllerOrder) throws Exception {
+	public void orderPerform(final ControllerOrder controllerOrder) {
 		switch (controllerOrder) {
 		// To Move Player
-		case NOTHING:
-			break;
-		case LEFT: {
-			// Move the Player
-			this.model.getMap().getPlayer().movePlayer(this.model.getMap().getPlayer().chooseDirection(3));
-			// Notify changes
-			this.model.modelNotify();
+		case Q: {
+
 		}
 			break;
-		case RIGHT: {
-			// Move the Player
-			this.model.getMap().getPlayer().movePlayer(this.model.getMap().getPlayer().chooseDirection(4));
-			// Notify changes
-			this.model.modelNotify();
+		case D: {
+
 		}
 			break;
+
 		default:
-			throw new Exception("Invalid order");
+			break;
 		}
 
-	}
-
-	/**
-	 * Play.
-	 *
-	 * @throws InterruptedException the interrupted exception
-	 */
-	// Game loop
-	public final void play() throws InterruptedException {
-		//int moveOn = 1;
-		while (true) {
-			Thread.sleep(300);
-			/*if (moveOn == 2) {
-				// Refresh Opponents
-				this.model.getMap().getOpponent().forEach((opponent) -> {
-					try {
-						opponent.refreshOpponents();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				});
-				// Notify changes
-				this.model.modelNotify();
-				moveOn = 1;
-			} else*/ {
-				//moveOn++;
-			};
-			// Notify changes
-			this.model.modelNotify();
-			// Stop the Game
-			//endOfGame();
-		}
-
-	}
-
-	/**
-	 * End of game.
-	 *
-	 * @throws InterruptedException the interrupted exception
-	 */
-	// Stop the Game
-	/*public void endOfGame() throws InterruptedException {
-		// Stop the Game if Player is dead
-		if (this.model.getMap().getPlayer().isAlive() == false) {
-			this.view.printMessage("Blurp !");
-			System.exit(0);
-		}
-	}*/
-
-	/**
-	 * Sets the map.
-	 *
-	 * @param map the new map
-	 * @throws Exception    exception
-	 * @throws SQLException SQLException
-	 */
-	// Set the Map
-	public void setMap(int map) throws SQLException, Exception {
-		// Load the Map
-		this.model.loadMap(map);
 	}
 
 	@Override
 	public void control() {
 		// TODO Auto-generated method stub
-		
+		this.view.printMessage("Tron");
 	}
 
 }

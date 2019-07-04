@@ -11,6 +11,14 @@ import java.util.Observer;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import contract.IModel;
+import entity.Entity;
+import entity.Map;
+import mobileelement.Player1;
+import mobileelement.Player2;
+import motionlesselement.Ground;
+import motionlesselement.Wall;
+
 /**
  * The Class ViewPanel.
  *
@@ -29,9 +37,6 @@ class ViewPanel extends JPanel implements Observer {
 	/** The img. */
 	private Image img;
 
-	/** The map design. */
-	private String mapDesign;
-
 	/**
 	 * Instantiates a new view panel.
 	 *
@@ -45,12 +50,12 @@ class ViewPanel extends JPanel implements Observer {
 		this.img = null;
 		try {
 			// Load font image
-			img = ImageIO.read(new File("..\\entity\\src\\main\\resources\\sprite\\wall.png"));
+			img = ImageIO.read(new File("..\\entity\\src\\main\\resources\\sprite\\background.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		// Get Map design
-		mapDesign = this.getViewFrame().getModel().getMap().getMapDesign();
+		viewFrame.getModel().getMap();
 	}
 
 	/**
@@ -102,30 +107,45 @@ class ViewPanel extends JPanel implements Observer {
 	// Paint all graphics components
 	@Override
 	protected void paintComponent(final Graphics graphics) {
-
-
-		if (this.getViewFrame().getModel().getMap().getPlayer() != null) {
-			// Clear the ViewPanel
-			graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-			// Set the ViewPanel Properties
-			super.paintComponent(graphics);
-			graphics.fillRect(0, 0, getWidth(), getHeight());
-			graphics.drawImage(img, 0, 0, 1920, 1080, this);
-
-			// Draw all Elements
-			for (int y = 0; y < this.getViewFrame().getModel().getMap().getWidth(); y++) {
-				for (int x = 0; x < this.getViewFrame().getModel().getMap().getHeight(); x++) {
-					graphics.drawImage(
-							this.getViewFrame().getModel().getMap().getMapObjects(y, x).getSprite().getImage(),
-							y * DEFAULT_SPRITE_SIZE, x * DEFAULT_SPRITE_SIZE, this);
-				}
-			}
-			graphics.setColor(new Color(0x4240ff));// Blue : 0x4240ff
+		Map map = this.viewFrame.getModel().getMap();
+		Entity[][] loadMap = map.getArrayMap();
+		Player1 player1 = null;
+		final int width = 49;
+		final int height = 74;
+		graphics.drawImage(img, 0, 0, 300, 350, this);
+		if (map.getPlayer1() != null) {
+			player1 = this.viewFrame.getModel().getMap().getPlayer1();
+			int player1PosX = this.viewFrame.getModel().getMap().getPlayer1().getPositionX();
+			int player1PosY = this.viewFrame.getModel().getMap().getPlayer1().getPositionY();
 
 		}
-		// Get Map design
-		this.mapDesign = this.getViewFrame().getModel().getMap().getMapDesign();
+		this.displayMap(graphics, width, height);
+	}
 
+	public void displayMap(Graphics graphics, int width, int height) {
+		final int imageSize = 8;
+		Map map = this.viewFrame.getModel().getMap();
+		IModel getModel = this.viewFrame.getModel();
+		Entity[][] loadMap = map.getArrayMap();
+		Player1 player1 = this.viewFrame.getModel().getMap().getPlayer1();
+		for (int x = 0; x < 74; x++) {
+			for (int y = 0; y < 49; y++) {
+				if (loadMap[x][y] instanceof Wall) {
+					graphics.setColor(Color.BLACK);
+					graphics.fillRect(x * imageSize, y * imageSize, 8, 8);
+				} else if (loadMap[x][y] instanceof Ground) {
+					graphics.setColor(Color.WHITE);
+					graphics.drawRect(x * imageSize, y * imageSize, 8, 8);
+				} else if (loadMap[x][y] instanceof Player1) {
+					graphics.setColor(Color.BLUE);
+					graphics.fillRect(x * imageSize, y * imageSize, 8, 8);
+				} else if (loadMap[x][y] instanceof Player2) {
+					graphics.setColor(Color.RED);
+					graphics.fillRect(x * imageSize, y * imageSize, 8, 8);
+				}
+
+			}
+		}
 	}
 
 }

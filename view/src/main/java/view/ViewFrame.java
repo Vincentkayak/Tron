@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import contract.IController;
 import contract.IModel;
@@ -75,7 +76,6 @@ class ViewFrame extends JFrame implements KeyListener {
 	 *
 	 * @return the controller
 	 */
-	@SuppressWarnings("unused")
 	private IController getController() {
 		return this.controller;
 	}
@@ -118,9 +118,19 @@ class ViewFrame extends JFrame implements KeyListener {
 		this.setResizable(false);
 		this.addKeyListener(this);
 		this.setContentPane(new ViewPanel(this));
-		this.setSize(400 + this.getInsets().left + this.getInsets().right,
-				60 + this.getInsets().top + this.getInsets().bottom);
+		this.setSize(600,428);
 		this.setLocationRelativeTo(null);
+		this.setTitle("Tron");
+	}
+
+	/**
+	 * Prints the message.
+	 *
+	 * @param message
+	 *          the message
+	 */
+	public void printMessage(final String message) {
+		JOptionPane.showMessageDialog(null, message);
 	}
 
 	/*
@@ -128,15 +138,18 @@ class ViewFrame extends JFrame implements KeyListener {
 	 *
 	 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
 	 */
+	public void keyTyped(final KeyEvent e) {
+
+	}
 
 	/*
 	 * (non-Javadoc)
 	 *
 	 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
 	 */
-	/*public void keyPressed(final KeyEvent e) {
+	public void keyPressed(final KeyEvent e) {
 		this.getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));
-	}*/
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -145,17 +158,5 @@ class ViewFrame extends JFrame implements KeyListener {
 	 */
 	public void keyReleased(final KeyEvent e) {
 
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 }
