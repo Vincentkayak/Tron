@@ -1,7 +1,5 @@
 package controller;
 
-import java.sql.SQLException;
-
 import contract.ControllerOrder;
 import contract.IController;
 import contract.IModel;
@@ -80,14 +78,21 @@ public final class Controller implements IController {
 		switch (controllerOrder) {
 		// To Move Player
 		case Q: {
-
+			this.model.getMap();
 		}
 			break;
 		case D: {
-
+			this.model.getMap();
 		}
 			break;
-
+		case LEFT: {
+			this.model.getMap();
+		}
+			break;
+		case RIGHT: {
+			this.model.getMap();
+		}
+			break;
 		default:
 			break;
 		}

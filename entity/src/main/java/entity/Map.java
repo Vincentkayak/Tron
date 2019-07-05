@@ -3,6 +3,8 @@ package entity;
 import mobileelement.Player1;
 import mobileelement.Player2;
 import motionlesselement.Ground;
+import motionlesselement.OilPlayer1;
+import motionlesselement.OilPlayer2;
 import motionlesselement.Wall;
 
 public class Map extends Entity {
@@ -70,10 +72,12 @@ public class Map extends Entity {
 
 	public void createMap() {
 		String map = this.getMapContent();
-		this.mapObjects = new Entity[this.getWidthMap()][this.getHeightMap()];
-		for (int y = 0; y < getHeightMap(); y++) {
+		int heightMap = 49;
+		int widthMap = 74;
+		this.mapObjects = new Entity[widthMap][heightMap];
+		for (int y = 0; y < heightMap; y++) {
 			String[] finalMap = map.split("\n");
-			for (int x = 0; x < getWidthMap(); x++) {
+			for (int x = 0; x < widthMap; x++) {
 				switch (finalMap[y].toCharArray()[x]) {
 				case 'w':
 					mapObjects[x][y] = new Wall(x, y);
@@ -87,22 +91,18 @@ public class Map extends Entity {
 				case 's':
 					mapObjects[x][y] = new Player2(x, y);
 					break;
+				case 'o':
+					mapObjects[x][y] = new OilPlayer1(x, y);
+					break;
+				case 'd':
+					mapObjects[x][y] = new OilPlayer2(x, y);
+					break;
 				default:
 					break;
 				}
 				mapObjects[x][y].setMap(this);
 			}
 		}
-	}
-
-	public int getHeightMap() {
-		String[] mapFirstLength = getMapContent().split("\n");
-		return mapFirstLength.length;
-	}
-
-	public int getWidthMap() {
-		String[] mapFirstLength = getMapContent().split("\n");
-		return mapFirstLength[0].length() - 1;
 	}
 
 	public String getMapContent() {
@@ -132,8 +132,8 @@ public class Map extends Entity {
 
 	public Player2 getPlayer2() {
 		Entity[][] entity = this.getArrayMap();
-		for (int y = 0; y < getHeightMap(); y++) {
-			for (int x = 0; x < getWidthMap(); x++) {
+		for (int y = 0; y < 49; y++) {
+			for (int x = 0; x < 74; x++) {
 				if (entity[x][y] instanceof Player2) {
 					return (Player2) entity[x][y];
 				}

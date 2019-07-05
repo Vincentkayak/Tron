@@ -7,9 +7,6 @@ package entity;
  */
 public abstract class Entity {
 
-	/** The sprite. */
-	private Sprite sprite;
-
 	/** The position. */
 	private int positionX;
 	private int positionY;
@@ -18,22 +15,13 @@ public abstract class Entity {
 	private Map map;
 
 	// Element constructor
-	public Entity(final Sprite sprite, int x, int y) {
-		this.setSprite(sprite);
+	public Entity(int x, int y) {
 		this.positionX = x;
 		this.positionY = y;
 	}
 	
 	public Entity() {
 		
-	}
-
-	public final Sprite getSprite() {
-		return this.sprite;
-	}
-	
-	public final void setSprite(final Sprite sprite) {
-		this.sprite = sprite;
 	}
 	
 	public int getPositionX() {

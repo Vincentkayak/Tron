@@ -31,12 +31,6 @@ class ViewPanel extends JPanel implements Observer {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -998294702363713521L;
 
-	/** The default sprite size. */
-	private static int DEFAULT_SPRITE_SIZE = 16;
-
-	/** The img. */
-	private Image img;
-
 	/**
 	 * Instantiates a new view panel.
 	 *
@@ -47,13 +41,6 @@ class ViewPanel extends JPanel implements Observer {
 		// Set the ViewFrame
 		this.setViewFrame(viewFrame);
 		viewFrame.getModel().getObservable().addObserver(this);
-		this.img = null;
-		try {
-			// Load font image
-			img = ImageIO.read(new File("..\\entity\\src\\main\\resources\\sprite\\background.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		// Get Map design
 		viewFrame.getModel().getMap();
 	}
@@ -112,7 +99,6 @@ class ViewPanel extends JPanel implements Observer {
 		Player1 player1 = null;
 		final int width = 49;
 		final int height = 74;
-		graphics.drawImage(img, 0, 0, 300, 350, this);
 		if (map.getPlayer1() != null) {
 			player1 = this.viewFrame.getModel().getMap().getPlayer1();
 			int player1PosX = this.viewFrame.getModel().getMap().getPlayer1().getPositionX();
