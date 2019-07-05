@@ -2,13 +2,9 @@ package view;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import contract.IModel;
@@ -17,6 +13,8 @@ import entity.Map;
 import mobileelement.Player1;
 import mobileelement.Player2;
 import motionlesselement.Ground;
+import motionlesselement.OilPlayer1;
+import motionlesselement.OilPlayer2;
 import motionlesselement.Wall;
 
 /**
@@ -125,13 +123,17 @@ class ViewPanel extends JPanel implements Observer {
 				} else if (loadMap[x][y] instanceof Player1) {
 					graphics.setColor(Color.BLUE);
 					graphics.fillRect(x * imageSize, y * imageSize, 8, 8);
-				} else if (loadMap[x][y] instanceof Player2) {
+				} else if (loadMap[x][y] instanceof Player2) {	
 					graphics.setColor(Color.RED);
 					graphics.fillRect(x * imageSize, y * imageSize, 8, 8);
+				} else if (loadMap[x][y] instanceof OilPlayer1) {
+					graphics.setColor(new Color(0x7accf5));
+					graphics.fillRect(x * imageSize, y * imageSize, 8, 8);
+				} else if (loadMap[x][y] instanceof OilPlayer2) {
+					graphics.setColor(new Color(0xf78b8b));
+					graphics.fillRect(x * imageSize, y * imageSize, 8, 8);
 				}
-
 			}
 		}
 	}
-
 }
