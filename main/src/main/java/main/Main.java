@@ -16,6 +16,8 @@ import view.View;
  */
 public abstract class Main {
 
+	static int speed = 100;
+	
 	/**
 	 * The main method.
 	 *
@@ -37,7 +39,10 @@ public abstract class Main {
 
 		// Set default Game controller properties
 		controller.control();
-		controller.orderPerform(ControllerOrder.NOTHING);
+		controller.orderPerform(ControllerOrder.Q);
+		controller.orderPerform(ControllerOrder.RIGHT);
+		controller.start(speed);
+
 
 	}
 }

@@ -8,36 +8,33 @@ package entity;
 public abstract class Entity {
 
 	/** The position. */
-	private int positionX;
-	private int positionY;
+	private Position position;
 
 	/** The map. */
 	private Map map;
-
+	
 	// Element constructor
-	public Entity(int x, int y) {
-		this.positionX = x;
-		this.positionY = y;
+	public Entity(final int x, final int y) {
+		try {
+			this.setPosition(x, y);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public Entity() {
 		
 	}
 	
-	public int getPositionX() {
-		return this.positionX;
+	public Position getPosition() {
+		return this.position;
 	}
+
 	
-	public void setPositionX(int x) {
-		this.positionX = x;
-	}
-	
-	public int getPositionY() {
-		return this.positionY;
-	}
-	
-	public void setPositionY(int y) {
-		this.positionY = y;
+	public void setPosition(int x, int y) throws Exception {
+			this.position = new Position(x, y);
+
 	}
 	
 	public Map getMap() {
@@ -47,4 +44,5 @@ public abstract class Entity {
 	public void setMap(Map map) {
 		this.map = map;
 	}
+	
 }

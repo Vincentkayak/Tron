@@ -1,7 +1,6 @@
 package model;
 
 import java.util.Observable;
-
 import contract.IModel;
 import entity.Map;
 
@@ -56,24 +55,11 @@ public final class Model extends Observable implements IModel {
 	 *
 	 * @see contract.IModel#getMessage(java.lang.String)
 	 */
-	public void loadMap() {
-		/*
-		 * try { final DAOMap daoMap = new
-		 * DAOMap(DBConnection.getInstance().getConnection());
-		 * this.setMap(daoMap.find(id)); } catch (final SQLException e) {
-		 * e.printStackTrace(); }
-		 */
-	}
 
 	/**
 	 * Gets the observable.
 	 *
 	 * @return the observable
-	 */
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see contract.IModel#getObservable()
 	 */
 	public Observable getObservable() {
 		return this;
@@ -86,8 +72,10 @@ public final class Model extends Observable implements IModel {
 	}
 
 	@Override
-	public void loop() {
-		this.getMap();
+	public void loop() throws Exception {
+		if(this.getMap().getPlayer1() != null && this.getMap().getPlayer2() != null) {
+		this.getMap().loop();
 		this.modelNotify();
+		}
 	}
 }

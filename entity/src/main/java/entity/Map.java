@@ -11,6 +11,7 @@ public class Map extends Entity {
 
 	/** The map objects. */
 	private Entity[][] mapObjects;
+	private Collisions collision;
 	private static String content = "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww\r\n"
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
@@ -28,6 +29,7 @@ public class Map extends Entity {
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
+			+ "wnnnnnnnnnnnnnnnnnnnnnnnfnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
@@ -39,8 +41,7 @@ public class Map extends Entity {
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
-			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
-			+ "wnnnnnnnnnnnnnnnnnooofnnnnnnnnnnnnnnnnnnnnnnnnnnsdddnnnnnnnnnnnnnnnnnnnnnw\r\n"
+			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnsnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
@@ -64,6 +65,7 @@ public class Map extends Entity {
 	public Map(final String content) {
 		this.setMapContent(content);
 		this.createMap();
+		collision = new Collisions();
 	}
 
 	public Map() {
@@ -91,12 +93,6 @@ public class Map extends Entity {
 				case 's':
 					mapObjects[x][y] = new Player2(x, y);
 					break;
-				case 'o':
-					mapObjects[x][y] = new OilPlayer1(x, y);
-					break;
-				case 'd':
-					mapObjects[x][y] = new OilPlayer2(x, y);
-					break;
 				default:
 					break;
 				}
@@ -106,11 +102,11 @@ public class Map extends Entity {
 	}
 
 	public String getMapContent() {
-		return Map.content;
+		return this.content;
 	}
 
-	public void setMapContent(String content) {
-		Map.content = content;
+	public void setMapContent(final String content) {
+		this.content = content;
 	}
 
 	public Entity[][] getArrayMap() {
@@ -131,11 +127,11 @@ public class Map extends Entity {
 	}
 
 	public Player2 getPlayer2() {
-		Entity[][] entity = this.getArrayMap();
+		Entity[][] entity2 = this.getArrayMap();
 		for (int y = 0; y < 49; y++) {
 			for (int x = 0; x < 74; x++) {
-				if (entity[x][y] instanceof Player2) {
-					return (Player2) entity[x][y];
+				if (entity2[x][y] instanceof Player2) {
+					return (Player2) entity2[x][y];
 				}
 			}
 		}
@@ -143,9 +139,20 @@ public class Map extends Entity {
 
 	}
 
-	public void loop() {
-		Player1 p1 = this.getPlayer1();
-		Player2 p2 = this.getPlayer2();
+	public Collisions getCollision() {
+		return collision;
 	}
 
+	public void setCollision(Collisions collision) {
+		this.collision = collision;
+	}
+
+	public void loop() throws Exception {
+		boolean p1 = this.getPlayer1().getStatePlayer1();
+		boolean p2 = this.getPlayer2().getStatePlayer2();
+		if (p1 == true && p2 == true) {
+			this.getPlayer1().defaultDirection();
+			this.getPlayer2().defaultDirection();
+		}
+	}
 }

@@ -57,44 +57,4 @@ public class DAOMap extends DAOEntity<Map> {
 		return false;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see model.DAOEntity#find(int)
-	 */
-	@Override
-	public Map find() {
-		Map map = new Map();
-
-		try {
-			final String sql = "{call callMap(?)}";
-			final CallableStatement call = this.getConnection().prepareCall(sql);
-			call.execute();
-			final ResultSet resultSet = call.getResultSet();
-			if (resultSet.first()) {
-				map = new Map(resultSet.getString("contentMap"));
-			}
-			return map;
-		} catch (final SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see model.DAOEntity#find(java.lang.String)
-	 */
-	/*
-	 * @Override public HelloWorld find(final String code) { HelloWorld helloWorld =
-	 * new HelloWorld(); try { final String sql = "{call helloworldByCode(?)}";
-	 * final CallableStatement call = this.getConnection().prepareCall(sql);
-	 * call.setString(1, code); call.execute(); final ResultSet resultSet =
-	 * call.getResultSet(); if (resultSet.first()) { helloWorld = new
-	 * HelloWorld(resultSet.getInt("id"), code, resultSet.getString("message")); }
-	 * return helloWorld; } catch (final SQLException e) { e.printStackTrace(); }
-	 * return null; }
-	 */
-
 }

@@ -1,5 +1,7 @@
 package controller;
 
+import java.sql.SQLException;
+
 import contract.ControllerOrder;
 import contract.IController;
 import contract.IModel;
@@ -66,7 +68,7 @@ public final class Controller implements IController {
 	 * Order perform.
 	 *
 	 * @param controllerOrder the controller order
-	 * @throws Exception exception
+	 * @throws Exception 
 	 */
 	/*
 	 * (non-Javadoc)
@@ -74,35 +76,43 @@ public final class Controller implements IController {
 	 * @see contract.IController#orderPerform(contract.ControllerOrder)
 	 */
 	// Get user orders
-	public void orderPerform(final ControllerOrder controllerOrder) {
+	public void orderPerform(final ControllerOrder controllerOrder) throws Exception {
 		switch (controllerOrder) {
-		// To Move Player
-		case Q: {
-			this.model.getMap();
+			case Q:
+				this.model.getMap().getPlayer1().changeDirectionPlayer1('Q');
+				break;
+			case D:
+				this.model.getMap().getPlayer1().changeDirectionPlayer1('D');
+				break;
+			case RIGHT:
+				this.model.getMap().getPlayer2().changeDirectionPlayer2('R');
+				break;
+			case LEFT:
+				this.model.getMap().getPlayer2().changeDirectionPlayer2('L');
+				break;
+			case NOTHING:
+			default :
+				break;
 		}
-			break;
-		case D: {
-			this.model.getMap();
-		}
-			break;
-		case LEFT: {
-			this.model.getMap();
-		}
-			break;
-		case RIGHT: {
-			this.model.getMap();
-		}
-			break;
-		default:
-			break;
-		}
-
 	}
 
 	@Override
 	public void control() {
 		// TODO Auto-generated method stub
-		this.view.printMessage("Tron");
+		this.view.printMessage("Welcome on Tron, Player 1 at the left play with Q and D and the second player with arrow keys");
 	}
 
+	public void start(int speed) throws Exception {
+
+		while (true) {
+			this.model.loop();
+			try {
+				Thread.sleep(speed);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+	}
 }

@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.util.Observable;
 import java.util.Observer;
@@ -28,6 +29,8 @@ class ViewPanel extends JPanel implements Observer {
 	private ViewFrame viewFrame;
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -998294702363713521L;
+	
+	private boolean endGame = false;
 
 	/**
 	 * Instantiates a new view panel.
@@ -63,12 +66,6 @@ class ViewPanel extends JPanel implements Observer {
 		this.viewFrame = viewFrame;
 	}
 
-	/**
-	 * Update.
-	 *
-	 * @param arg0 the arg 0
-	 * @param arg1 the arg 1
-	 */
 	/*
 	 * (non-Javadoc)
 	 *
@@ -93,17 +90,18 @@ class ViewPanel extends JPanel implements Observer {
 	@Override
 	protected void paintComponent(final Graphics graphics) {
 		Map map = this.viewFrame.getModel().getMap();
-		Entity[][] loadMap = map.getArrayMap();
+		Entity[][] MapContent = map.getArrayMap();
 		Player1 player1 = null;
+		Player2 player2 = null;
 		final int width = 49;
 		final int height = 74;
-		if (map.getPlayer1() != null) {
+		if (map.getPlayer1() != null && map.getPlayer2() != null) {
 			player1 = this.viewFrame.getModel().getMap().getPlayer1();
-			int player1PosX = this.viewFrame.getModel().getMap().getPlayer1().getPositionX();
-			int player1PosY = this.viewFrame.getModel().getMap().getPlayer1().getPositionY();
-
+			player2 = this.viewFrame.getModel().getMap().getPlayer2();
+			this.displayMap(graphics, width, height);
+		} else {
+			graphics.clearRect(0, 0, 600, 400);
 		}
-		this.displayMap(graphics, width, height);
 	}
 
 	public void displayMap(Graphics graphics, int width, int height) {
@@ -112,6 +110,7 @@ class ViewPanel extends JPanel implements Observer {
 		IModel getModel = this.viewFrame.getModel();
 		Entity[][] loadMap = map.getArrayMap();
 		Player1 player1 = this.viewFrame.getModel().getMap().getPlayer1();
+		Player2 player2 = this.viewFrame.getModel().getMap().getPlayer2();
 		for (int x = 0; x < 74; x++) {
 			for (int y = 0; y < 49; y++) {
 				if (loadMap[x][y] instanceof Wall) {
@@ -123,7 +122,7 @@ class ViewPanel extends JPanel implements Observer {
 				} else if (loadMap[x][y] instanceof Player1) {
 					graphics.setColor(Color.BLUE);
 					graphics.fillRect(x * imageSize, y * imageSize, 8, 8);
-				} else if (loadMap[x][y] instanceof Player2) {	
+				} else if (loadMap[x][y] instanceof Player2) {
 					graphics.setColor(Color.RED);
 					graphics.fillRect(x * imageSize, y * imageSize, 8, 8);
 				} else if (loadMap[x][y] instanceof OilPlayer1) {
@@ -135,5 +134,19 @@ class ViewPanel extends JPanel implements Observer {
 				}
 			}
 		}
+	
+	/*if (!player1.getStatePlayer1() && endGame == false) {
+		endGame = true;
+		graphics.clearRect(0, 0, 600, 400);
+		this.viewFrame.printMessage("Congratulations Player 2, you won !");
+		System.exit(0);
 	}
+
+	if (!player2.getStatePlayer2() && endGame == false) {
+		endGame = true;
+		graphics.clearRect(0, 0, 600, 400);
+		this.viewFrame.printMessage("Congratulations Player 1, you won !");
+		System.exit(0);
+	}*/
+}
 }

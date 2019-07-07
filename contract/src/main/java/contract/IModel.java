@@ -15,15 +15,6 @@ public interface IModel {
 	Map getMap();
 
 	/**
-	 * Load the Map.
-	 *
-	 * @param i the code
-	 * @throws Exception exception
-	 * @throws SQLException SQLException
-	 */
-	void loadMap();
-
-	/**
 	 * Gets the observable.
 	 *
 	 * @return the observable
@@ -35,6 +26,6 @@ public interface IModel {
 	 */
 	void modelNotify();
 
-	void loop();
+	void loop() throws Exception;
 
 }
