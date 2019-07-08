@@ -95,7 +95,7 @@ class ViewPanel extends JPanel implements Observer {
 		Player2 player2 = null;
 		final int width = 49;
 		final int height = 74;
-		if (map.getPlayer1() != null && map.getPlayer2() != null) {
+		if (map.getPlayer1() != null || map.getPlayer2() != null) {
 			player1 = this.viewFrame.getModel().getMap().getPlayer1();
 			player2 = this.viewFrame.getModel().getMap().getPlayer2();
 			this.displayMap(graphics, width, height);
@@ -112,13 +112,13 @@ class ViewPanel extends JPanel implements Observer {
 		Player1 player1 = this.viewFrame.getModel().getMap().getPlayer1();
 		Player2 player2 = this.viewFrame.getModel().getMap().getPlayer2();
 		for (int x = 0; x < 74; x++) {
-			for (int y = 0; y < 49; y++) {
+			for (int y = 0; y < 46; y++) {
 				if (loadMap[x][y] instanceof Wall) {
 					graphics.setColor(Color.BLACK);
 					graphics.fillRect(x * imageSize, y * imageSize, 8, 8);
 				} else if (loadMap[x][y] instanceof Ground) {
 					graphics.setColor(Color.WHITE);
-					graphics.drawRect(x * imageSize, y * imageSize, 8, 8);
+					graphics.fillRect(x * imageSize, y * imageSize, 8, 8);
 				} else if (loadMap[x][y] instanceof Player1) {
 					graphics.setColor(Color.BLUE);
 					graphics.fillRect(x * imageSize, y * imageSize, 8, 8);

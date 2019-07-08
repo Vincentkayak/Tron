@@ -29,7 +29,8 @@ public class Map extends Entity {
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
-			+ "wnnnnnnnnnnnnnnnnnnnnnnnfnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
+			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
+			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnfnnnnnnnnnnnnnnnnnnw\r\n"
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
@@ -37,11 +38,7 @@ public class Map extends Entity {
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
-			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
-			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
-			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
-			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
-			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnsnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
+			+ "wnnnnnnnnnnnnnnnsnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
 			+ "wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n"
@@ -74,7 +71,7 @@ public class Map extends Entity {
 
 	public void createMap() {
 		String map = this.getMapContent();
-		int heightMap = 49;
+		int heightMap = 46;
 		int widthMap = 74;
 		this.mapObjects = new Entity[widthMap][heightMap];
 		for (int y = 0; y < heightMap; y++) {
@@ -102,11 +99,11 @@ public class Map extends Entity {
 	}
 
 	public String getMapContent() {
-		return this.content;
+		return Map.content;
 	}
 
 	public void setMapContent(final String content) {
-		this.content = content;
+		Map.content = content;
 	}
 
 	public Entity[][] getArrayMap() {
@@ -116,7 +113,7 @@ public class Map extends Entity {
 
 	public Player1 getPlayer1() {
 		Entity[][] entity = this.getArrayMap();
-		for (int y = 0; y < 49; y++) {
+		for (int y = 0; y < 46; y++) {
 			for (int x = 0; x < 74; x++) {
 				if (entity[x][y] instanceof Player1) {
 					return (Player1) entity[x][y];
@@ -128,7 +125,7 @@ public class Map extends Entity {
 
 	public Player2 getPlayer2() {
 		Entity[][] entity2 = this.getArrayMap();
-		for (int y = 0; y < 49; y++) {
+		for (int y = 0; y < 46; y++) {
 			for (int x = 0; x < 74; x++) {
 				if (entity2[x][y] instanceof Player2) {
 					return (Player2) entity2[x][y];
@@ -148,11 +145,7 @@ public class Map extends Entity {
 	}
 
 	public void loop() throws Exception {
-		boolean p1 = this.getPlayer1().getStatePlayer1();
-		boolean p2 = this.getPlayer2().getStatePlayer2();
-		if (p1 == true && p2 == true) {
-			this.getPlayer1().defaultDirection();
-			this.getPlayer2().defaultDirection();
+			this.getPlayer1().defaultDirection1();
+			this.getPlayer2().defaultDirection2();
 		}
 	}
-}

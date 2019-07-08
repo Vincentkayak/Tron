@@ -76,18 +76,18 @@ public final class Controller implements IController {
 	 * @see contract.IController#orderPerform(contract.ControllerOrder)
 	 */
 	// Get user orders
-	public void orderPerform(final ControllerOrder controllerOrder) throws Exception {
+	public void orderPerform(final ControllerOrder controllerOrder) {
 		switch (controllerOrder) {
 			case Q:
 				this.model.getMap().getPlayer1().changeDirectionPlayer1('Q');
 				break;
-			case D:
-				this.model.getMap().getPlayer1().changeDirectionPlayer1('D');
+			case S:
+				this.model.getMap().getPlayer1().changeDirectionPlayer1('S');
 				break;
-			case RIGHT:
-				this.model.getMap().getPlayer2().changeDirectionPlayer2('R');
+			case M:
+				this.model.getMap().getPlayer2().changeDirectionPlayer2('M');
 				break;
-			case LEFT:
+			case L:
 				this.model.getMap().getPlayer2().changeDirectionPlayer2('L');
 				break;
 			case NOTHING:

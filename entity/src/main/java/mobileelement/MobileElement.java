@@ -2,12 +2,11 @@ package mobileelement;
 
 import entity.Collisions;
 import entity.Entity;
-import entity.Position;
 import motionlesselement.OilPlayer1;
 import motionlesselement.OilPlayer2;
 
 public abstract class MobileElement extends Entity {
-	
+
 	protected boolean StatePlayer1;
 	protected boolean StatePlayer2;
 
@@ -15,9 +14,9 @@ public abstract class MobileElement extends Entity {
 		super(x, y);
 	}
 
-	public void movePlayer1(int x, int y) throws Exception {
-		final int positionX = this.getPosition().getX();
-		final int positionY = this.getPosition().getY();
+	public void movePlayer1(int x, int y) {
+		final int positionX = this.getPositionX();
+		final int positionY = this.getPositionX();
 		final Entity[][] MapContent = this.getMap().getArrayMap();
 		final Collisions getCollisions = this.getMap().getCollision();
 		boolean collision1 = false;
@@ -28,18 +27,19 @@ public abstract class MobileElement extends Entity {
 			collision1 = getCollisions.checkEmpty(MapContent, positionX + x, positionY + y);
 		}
 
-		if(!collision1) {
+		if (!collision1) {
 			MapContent[positionX + x][positionY + y] = MapContent[positionX][positionY];
-			MapContent[positionX][positionY] = new OilPlayer1(positionX,positionY);
-			this.setPosition(positionX + x, positionY + y);
-		} else if(collision1) {
+			MapContent[positionX][positionY] = new OilPlayer1(positionX, positionY);
+			this.setPositionX(positionX + x);
+			this.setPositionX(positionY + y);
+		} else if (collision1) {
 			this.setStatePlayer1(false);
 		}
 	}
-	
-	public void movePlayer2(int x, int y) throws Exception {
-		final int positionX = this.getPosition().getX();
-		final int positionY = this.getPosition().getY();
+
+	public void movePlayer2(int x, int y) {
+		final int positionX = this.getPositionX();
+		final int positionY = this.getPositionX();
 		final Entity[][] MapContent = this.getMap().getArrayMap();
 		final Collisions getCollisions = this.getMap().getCollision();
 		boolean collision2 = false;
@@ -50,27 +50,28 @@ public abstract class MobileElement extends Entity {
 			collision2 = getCollisions.checkEmpty(MapContent, positionX + x, positionY + y);
 		}
 
-		if(!collision2) {
+		if (!collision2) {
 			MapContent[positionX + x][positionY + y] = MapContent[positionX][positionY];
-			MapContent[positionX][positionY] = new OilPlayer2(positionX,positionY);
-			this.setPosition(positionX + x, positionY + y);
-		} else if(collision2) {
+			MapContent[positionX][positionY] = new OilPlayer2(positionX, positionY);
+			this.setPositionX(positionX + x);
+			this.setPositionX(positionY + y);
+		} else if (collision2) {
 			this.setStatePlayer1(false);
 		}
 	}
-	
+
 	public boolean getStatePlayer1() {
 		return StatePlayer1;
 	}
-	
+
 	public void setStatePlayer1(boolean alive) {
 		this.StatePlayer1 = alive;
 	}
-	
+
 	public boolean getStatePlayer2() {
 		return StatePlayer2;
 	}
-	
+
 	public void setStatePlayer2(boolean alive2) {
 		this.StatePlayer2 = alive2;
 	}

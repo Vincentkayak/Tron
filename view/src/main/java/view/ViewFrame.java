@@ -32,7 +32,7 @@ class ViewFrame extends JFrame implements KeyListener {
 	 * @param model the model
 	 * @throws HeadlessException the headless exception
 	 */
-	public ViewFrame(final IModel model) throws HeadlessException {
+	public ViewFrame(final IModel model) {
 		this.buildViewFrame(model);
 	}
 
@@ -54,7 +54,7 @@ class ViewFrame extends JFrame implements KeyListener {
 	 * @param title the title
 	 * @throws HeadlessException the headless exception
 	 */
-	public ViewFrame(final IModel model, final String title) throws HeadlessException {
+	public ViewFrame(final IModel model, final String title) {
 		super(title);
 		this.buildViewFrame(model);
 	}
@@ -118,7 +118,7 @@ class ViewFrame extends JFrame implements KeyListener {
 		this.setResizable(false);
 		this.addKeyListener(this);
 		this.setContentPane(new ViewPanel(this));
-		this.setSize(600,428);
+		this.setSize(600,400);
 		this.setLocationRelativeTo(null);
 		this.setTitle("Tron");
 	}

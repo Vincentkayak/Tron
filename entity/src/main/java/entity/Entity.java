@@ -1,48 +1,45 @@
 package entity;
 
 /**
- * The Class Element.
+ * The Class Entity.
  *
- * @author Jean michel crapaud The class Element Saved as file Element.java
+ * @author Jean-Aymeric Diet
  */
 public abstract class Entity {
-
-	/** The position. */
-	private Position position;
-
-	/** The map. */
+	private int positionX;
+	private int positionY;
 	private Map map;
 	
-	// Element constructor
-	public Entity(final int x, final int y) {
-		try {
-			this.setPosition(x, y);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public Entity(final int x, int y) {
+		this.positionX = x;
+		this.positionY = y;
 	}
 	
 	public Entity() {
 		
 	}
 	
-	public Position getPosition() {
-		return this.position;
-	}
-
-	
-	public void setPosition(int x, int y) throws Exception {
-			this.position = new Position(x, y);
-
+	public int getPositionX() {
+		return this.positionX;
 	}
 	
-	public Map getMap() {
-		return this.map;
+	public int getPositionY() {
+		return this.positionY;
+	}
+	
+	public void setPositionX(int x) {
+		this.positionX = x;
+	}
+	
+	public void setPositionY(int y) {
+		this.positionY = y;
 	}
 	
 	public void setMap(Map map) {
 		this.map = map;
 	}
 	
+	public Map getMap() {
+		return this.map;
+	}
 }

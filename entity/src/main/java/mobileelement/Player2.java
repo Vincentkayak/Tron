@@ -9,9 +9,9 @@ public class Player2 extends MobileElement{
 		super(y, x);
 	}
 
-	public void changeDirectionPlayer2(char direction) throws Exception {
+	public void changeDirectionPlayer2(char direction) {
 		switch(direction) {
-		case 'R':
+		case 'M':
 			if (lastDirectionX == 0 && lastDirectionY == -1) {
 				this.movePlayer2(-1, 0);
 				this.setLastDirection2(-1,0);
@@ -64,7 +64,7 @@ public class Player2 extends MobileElement{
 		return lastDirectionY;
 	}
 	
-	public void defaultDirection() throws Exception {
+	public void defaultDirection2() {
 		this.movePlayer2(this.getLastDirectionXPlayer2(), this.getLastDirectionYPlayer2());
 	}
 }

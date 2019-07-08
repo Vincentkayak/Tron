@@ -10,11 +10,11 @@ public enum ControllerOrder {
 	
 	Q,
 	
-	D,
+	S,
 	
-	LEFT,
+	M,
 	
-	RIGHT,
+	L,
 	
 	NOTHING,
 }

@@ -40,7 +40,7 @@ public abstract class Main {
 		// Set default Game controller properties
 		controller.control();
 		controller.orderPerform(ControllerOrder.Q);
-		controller.orderPerform(ControllerOrder.RIGHT);
+		controller.orderPerform(ControllerOrder.M);
 		controller.start(speed);
 
 
