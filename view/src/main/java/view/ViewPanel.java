@@ -29,7 +29,7 @@ class ViewPanel extends JPanel implements Observer {
 	private ViewFrame viewFrame;
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -998294702363713521L;
-	
+
 	private boolean endGame = false;
 
 	/**
@@ -134,19 +134,20 @@ class ViewPanel extends JPanel implements Observer {
 				}
 			}
 		}
-	
-	/*if (!player1.getStatePlayer1() && endGame == false) {
-		endGame = true;
-		graphics.clearRect(0, 0, 600, 400);
-		this.viewFrame.printMessage("Congratulations Player 2, you won !");
-		System.exit(0);
-	}
 
-	if (!player2.getStatePlayer2() && endGame == false) {
-		endGame = true;
-		graphics.clearRect(0, 0, 600, 400);
-		this.viewFrame.printMessage("Congratulations Player 1, you won !");
-		System.exit(0);
-	}*/
-}
+		if (!player1.getAlivePlayer1() && endGame == false) {
+			endGame = true;
+			graphics.clearRect(0, 0, 600, 400);
+			this.viewFrame.printMessage("Congratulations Player 2, you won !");
+			System.exit(0);
+		}
+
+		if (!player2.getAlivePlayer2() && endGame == false) {
+			endGame = true;
+			graphics.clearRect(0, 0, 600, 400);
+			this.viewFrame.printMessage("Congratulations Player 1, you won !");
+			System.exit(0);
+		}
+
+	}
 }

@@ -3,7 +3,7 @@ package entity;
 /**
  * The Class Entity.
  *
- * @author Jean-Aymeric Diet
+ * @author Vincent Jacques
  */
 public abstract class Entity {
 	private int positionX;
@@ -42,4 +42,6 @@ public abstract class Entity {
 	public Map getMap() {
 		return this.map;
 	}
+	
+	
 }

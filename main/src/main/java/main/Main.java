@@ -25,7 +25,7 @@ public abstract class Main {
 	 * @throws Exception exception
 	 */
 
-	public static void main(final String[] args) throws Exception {
+	public static void main(final String[] args) {
 
 		// Load the Game Model
 		final Model model = new Model();
@@ -40,8 +40,8 @@ public abstract class Main {
 		// Set default Game controller properties
 		controller.control();
 		controller.orderPerform(ControllerOrder.Q);
-		controller.orderPerform(ControllerOrder.M);
-		controller.start(speed);
+		controller.orderPerform(ControllerOrder.L);
+		controller.start();
 
 
 	}

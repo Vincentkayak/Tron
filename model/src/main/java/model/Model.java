@@ -72,10 +72,22 @@ public final class Model extends Observable implements IModel {
 	}
 
 	@Override
-	public void loop() throws Exception {
+	public void loop() {
 		if(this.getMap().getPlayer1() != null && this.getMap().getPlayer2() != null) {
 		this.getMap().loop();
 		this.modelNotify();
 		}
+	}
+
+	@Override
+	public void isWinner(int number) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getWinner() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

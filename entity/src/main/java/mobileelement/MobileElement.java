@@ -5,74 +5,86 @@ import entity.Entity;
 import motionlesselement.OilPlayer1;
 import motionlesselement.OilPlayer2;
 
-public abstract class MobileElement extends Entity {
+/**
+ * The Class MobileElements
+ * 
+ * @author Vincent Jacques
+ */
 
-	protected boolean StatePlayer1;
-	protected boolean StatePlayer2;
-
+public class MobileElement extends Entity {
+	
+	protected boolean AlivePlayer1;
+	protected boolean AlivePlayer2;
+	
 	public MobileElement(int x, int y) {
 		super(x, y);
 	}
-
-	public void movePlayer1(int x, int y) {
-		final int positionX = this.getPositionX();
-		final int positionY = this.getPositionX();
-		final Entity[][] MapContent = this.getMap().getArrayMap();
-		final Collisions getCollisions = this.getMap().getCollision();
+	
+	public void Move(int x, int y) {
+		final int Xpos = this.getPositionX();
+		final int Ypos = this.getPositionY();
+		final Entity[][] loadMap = this.getMap().getArrayMap();
+		final Collisions getCollisions = this.getMap().getCollisions();
 		boolean collision1 = false;
-
-		if (this instanceof Player1) {
-			collision1 = getCollisions.checkCollisions(MapContent, positionX + x, positionY + y);
+		
+		if(this instanceof Player1) {
+			collision1 = getCollisions.checkCollisions(loadMap, Xpos + x, Ypos + y);
 		} else {
-			collision1 = getCollisions.checkEmpty(MapContent, positionX + x, positionY + y);
+			collision1 = getCollisions.checkEmpty(loadMap, Xpos + x, Ypos + y);
 		}
+		
+		if(!collision1) {
+			loadMap[Xpos + x][Ypos + y] = loadMap[Xpos][Ypos];
+			loadMap[Xpos][Ypos] = new OilPlayer1(Xpos,Ypos);
+			this.setPositionX(Xpos + x);
+			this.setPositionY(Ypos + y);
+		} else if(collision1) {
+			this.setAlivePlayer1(false);
+			/*loadMap[Xpos][Ypos] = new wallPlayer1(Xpos,Ypos);*/
+			
+		}
+		
 
-		if (!collision1) {
-			MapContent[positionX + x][positionY + y] = MapContent[positionX][positionY];
-			MapContent[positionX][positionY] = new OilPlayer1(positionX, positionY);
-			this.setPositionX(positionX + x);
-			this.setPositionX(positionY + y);
-		} else if (collision1) {
-			this.setStatePlayer1(false);
-		}
 	}
-
-	public void movePlayer2(int x, int y) {
-		final int positionX = this.getPositionX();
-		final int positionY = this.getPositionX();
-		final Entity[][] MapContent = this.getMap().getArrayMap();
-		final Collisions getCollisions = this.getMap().getCollision();
+	
+	public void Move1(int x, int y) {
+		final int Xpos = this.getPositionX();
+		final int Ypos = this.getPositionY();
+		final Entity[][] loadMap = this.getMap().getArrayMap();
+		final Collisions getCollisions = this.getMap().getCollisions();
 		boolean collision2 = false;
-
-		if (this instanceof Player2) {
-			collision2 = getCollisions.checkCollisions(MapContent, positionX + x, positionY + y);
+		
+		
+		if(this instanceof Player2) {
+			collision2 = getCollisions.checkCollisions(loadMap, Xpos + x, Ypos + y);
 		} else {
-			collision2 = getCollisions.checkEmpty(MapContent, positionX + x, positionY + y);
+			collision2 = getCollisions.checkEmpty(loadMap, Xpos + x, Ypos + y);
 		}
-
-		if (!collision2) {
-			MapContent[positionX + x][positionY + y] = MapContent[positionX][positionY];
-			MapContent[positionX][positionY] = new OilPlayer2(positionX, positionY);
-			this.setPositionX(positionX + x);
-			this.setPositionX(positionY + y);
-		} else if (collision2) {
-			this.setStatePlayer1(false);
+		
+		if(!collision2) {
+			loadMap[Xpos + x][Ypos + y] = loadMap[Xpos][Ypos];
+			loadMap[Xpos][Ypos] = new OilPlayer2(Xpos,Ypos);
+			this.setPositionX(Xpos + x);
+			this.setPositionY(Ypos + y);
+		} else if(collision2) {
+			this.setAlivePlayer2(false);
 		}
 	}
-
-	public boolean getStatePlayer1() {
-		return StatePlayer1;
+	
+	public boolean getAlivePlayer1() {
+		return AlivePlayer1;
+	}
+	
+	public void setAlivePlayer1(boolean alive1) {
+		this.AlivePlayer1 = alive1;
+	}
+	
+	public boolean getAlivePlayer2() {
+		return AlivePlayer2;
+	}
+	
+	public void setAlivePlayer2(boolean alive2) {
+		this.AlivePlayer2 = alive2;
 	}
 
-	public void setStatePlayer1(boolean alive) {
-		this.StatePlayer1 = alive;
-	}
-
-	public boolean getStatePlayer2() {
-		return StatePlayer2;
-	}
-
-	public void setStatePlayer2(boolean alive2) {
-		this.StatePlayer2 = alive2;
-	}
 }

@@ -1,18 +1,26 @@
 package contract;
 
-import java.sql.SQLException;
+import java.sql.Connection;
 import java.util.Observable;
-
 import entity.Map;
 
+/**
+ * The Interface IModel.
+ *
+ * @author Vincent Jacques
+ */
 public interface IModel {
 
 	/**
-	 * Gets the hello world.
+	 * Gets the Map.
 	 *
-	 * @return the map entity
+	 * @return the Map entity
 	 */
 	Map getMap();
+	
+	void isWinner(int number);
+
+	String getWinner();
 
 	/**
 	 * Gets the observable.
@@ -20,12 +28,8 @@ public interface IModel {
 	 * @return the observable
 	 */
 	Observable getObservable();
-
-	/**
-	 * Model notify.
-	 */
+	
 	void modelNotify();
-
-	void loop() throws Exception;
-
+	
+	void loop();
 }

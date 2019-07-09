@@ -17,7 +17,7 @@ public interface IController {
 	 *
 	 * @param controllerOrder
 	 *          the controller order
-	 * @throws Exception 
 	 */
 	public void orderPerform(ControllerOrder controllerOrder);
+
 }
