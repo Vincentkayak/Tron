@@ -31,7 +31,7 @@ public class Collisions {
 		}
 	}
 	
-	public boolean checkEmpty(Entity[][] entity, int x, int y) {
+	public boolean checkGround(Entity[][] entity, int x, int y) {
 		if(entity[x][y] instanceof Ground) {
 			return false;
 		}

@@ -78,16 +78,4 @@ public final class Model extends Observable implements IModel {
 		this.modelNotify();
 		}
 	}
-
-	@Override
-	public void isWinner(int number) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String getWinner() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

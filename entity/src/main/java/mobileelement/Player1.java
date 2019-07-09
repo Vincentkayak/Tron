@@ -6,44 +6,44 @@ public class Player1 extends MobileElement {
 	
 	public Player1(int x, int y) {
 		super(x, y);
-		this.AlivePlayer1 = true;
+		this.StatePlayer1 = true;
 	}
 	
-	public void movePlayer1(char direction) {
+	public void changeDirectionPlayer1(char direction) {
 		switch(direction) {
 		case 'Q':
 			if (lastDirectionX == 0 && lastDirectionY == -1) {
-				this.Move(-1, 0);
+				this.movePlayer1(-1, 0);
 				this.setLastDirection1(-1,0);
 			} else if (lastDirectionX == -1 && lastDirectionY == 0) {
-				this.Move(0, +1);
+				this.movePlayer1(0, +1);
 				this.setLastDirection1(0, +1);
 			} else if (lastDirectionX == 0 && lastDirectionY == +1) {
-				this.Move(+1, 0);
+				this.movePlayer1(+1, 0);
 				this.setLastDirection1(+1, 0);
 			} else if (lastDirectionX == +1 && lastDirectionY == 0) {
-				this.Move(0, -1);
+				this.movePlayer1(0, -1);
 				this.setLastDirection1(0, -1);
 			} else {
-				this.Move(-1, 0);
+				this.movePlayer1(-1, 0);
 				this.setLastDirection1(-1, 0);
 			}
 			break;
 		case 'S':
 			if (lastDirectionX == +1 && lastDirectionY == 0) {
-				this.Move(0, +1);
+				this.movePlayer1(0, +1);
 				this.setLastDirection1(0, +1);
 			} else if (lastDirectionX == -1 && lastDirectionY == 0) {
-				this.Move(0, -1);
+				this.movePlayer1(0, -1);
 				this.setLastDirection1(0, -1);
 			} else if (lastDirectionX == 0 && lastDirectionY == +1) {
-				this.Move(-1, 0);
+				this.movePlayer1(-1, 0);
 				this.setLastDirection1(-1, 0);
 			} else if(lastDirectionX == 0 && lastDirectionY == -1) {
-				this.Move(+1, 0);
+				this.movePlayer1(+1, 0);
 				this.setLastDirection1(+1, 0);
 			} else {
-				this.Move(+1, 0);
+				this.movePlayer1(+1, 0);
 				this.setLastDirection1(+1, 0);
 			}
 			break;
@@ -64,7 +64,7 @@ public class Player1 extends MobileElement {
 	}
 	
 	public void defaultDirection1() {
-		this.Move(this.getLastDirectionXPlayer1(), this.getLastDirectionYPlayer1());
+		this.movePlayer1(this.getLastDirectionXPlayer1(), this.getLastDirectionYPlayer1());
 	}
 	
 }

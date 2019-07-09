@@ -41,7 +41,7 @@ public final class Controller implements IController {
 	 * @see contract.IController#control()
 	 */
 	public void control() {
-		this.view.printMessage("Player one use Q and D to move, and the Player 2 use the key Right and Left to move");
+		this.view.printMessage("Welcome on Tron ! Player one use Q and D to move, and the Player 2 use L and M");
 	}
 
 	/**
@@ -78,16 +78,16 @@ public final class Controller implements IController {
 	public void orderPerform(final ControllerOrder controllerOrder) {
 		switch (controllerOrder) {
 			case Q:
-				this.model.getMap().getPlayer1().movePlayer1('Q');
+				this.model.getMap().getPlayer1().changeDirectionPlayer1('Q');
 				break;
 			case S:
-				this.model.getMap().getPlayer1().movePlayer1('S');
+				this.model.getMap().getPlayer1().changeDirectionPlayer1('S');
 				break;
 			case M:
-				this.model.getMap().getPlayer2().movePlayer2('M');
+				this.model.getMap().getPlayer2().changeDirectionPlayer2('M');
 				break;
 			case L:
-				this.model.getMap().getPlayer2().movePlayer2('L');
+				this.model.getMap().getPlayer2().changeDirectionPlayer2('L');
 				break;
 			case NOTHING:
 			default :
@@ -96,12 +96,12 @@ public final class Controller implements IController {
 	}
 	
 	
-	public void start() {
+	public void start(int speed) {
 		
 		while(true) {
 			this.model.loop();
 			try {
-				Thread.sleep(100);
+				Thread.sleep(speed);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

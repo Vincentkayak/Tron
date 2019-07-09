@@ -6,33 +6,28 @@ package entity;
  * @author Vincent Jacques
  */
 public abstract class Entity {
-	private int positionX;
-	private int positionY;
+	private Position position;
 	private Map map;
 	
 	public Entity(final int x, int y) {
-		this.positionX = x;
-		this.positionY = y;
+		this.setPosition(x, y);
 	}
 	
 	public Entity() {
 		
 	}
 	
-	public int getPositionX() {
-		return this.positionX;
+	public Position getPosition() {
+		return position;
 	}
 	
-	public int getPositionY() {
-		return this.positionY;
-	}
-	
-	public void setPositionX(int x) {
-		this.positionX = x;
-	}
-	
-	public void setPositionY(int y) {
-		this.positionY = y;
+	public void setPosition(int x, int y) {
+		try {
+			this.position = new Position(x, y);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void setMap(Map map) {

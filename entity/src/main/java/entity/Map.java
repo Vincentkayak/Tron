@@ -13,7 +13,7 @@ import motionlesselement.Wall;
 
 public class Map extends Entity {
 	
-	private static String contentMap = "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww\r\n" + 
+	private String Content = "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww\r\n" + 
 			"wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n" + 
 			"wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n" + 
 			"wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n" + 
@@ -37,7 +37,7 @@ public class Map extends Entity {
 			"wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n" + 
 			"wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n" + 
 			"wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n" + 
-			"wnnnnnnnnnnnnnnnnnnnnnnonnnnnnnnnnnnnnnnnnnnnnnnntnnnnnnnnnnnnnnnnnnnnnnnw\r\n" + 
+			"wnnnnnnnnnnnnnnnnnnnnnnfnnnnnnnnnnnnnnnnnnnnnnnnnsnnnnnnnnnnnnnnnnnnnnnnnw\r\n" + 
 			"wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n" + 
 			"wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n" + 
 			"wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n" + 
@@ -59,62 +59,62 @@ public class Map extends Entity {
 			"wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n" +
 			"wnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnw\r\n" +
 			"wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
-	private Entity[][] mapToChars;
-	private Collisions collisions;
+	private Entity[][] mapObjects;
+	private Collisions collision;
 	
 	public Map() {
 		this.createMap();
-		collisions = new Collisions();
+		collision = new Collisions();
 	}
 	
 	
-	public String getContentMap() {
-		return this.contentMap;
+	public String getContent() {
+		return this.Content;
 	}
 	
-	public void setContentMap(final String content) {
-		this.contentMap = content;
+	public void setContentMap(final String Content) {
+		this.Content = Content;
 	}
 
-	public Collisions getCollisions() {
-		return collisions;
+	public Collisions getCollision() {
+		return collision;
 	}
 	
-	public void setCollisions(Collisions collisions) {
-		this.collisions = collisions;
+	public void setCollision(Collisions collision) {
+		this.collision = collision;
 	}
 	
 	public void createMap() {
-		String map = this.getContentMap();
+		String map = this.getContent();
 		int HeightMap = 46;
 		int WidthMap = 74;
-		this.mapToChars = new Entity[WidthMap][HeightMap];
+		this.mapObjects = new Entity[WidthMap][HeightMap];
 		for (int y = 0; y < HeightMap; y++) {
 			String[] finalMap = map.split("\n");
 			for (int x = 0; x < WidthMap; x++) {
 				switch (finalMap[y].toCharArray()[x]) {
 				case 'w':
-					mapToChars[x][y] = new Wall(x,y);
+					mapObjects[x][y] = new Wall(x,y);
 					break;
 				case 'n':
-					mapToChars[x][y] = new Ground(x,y);
+					mapObjects[x][y] = new Ground(x,y);
 					break;
-				case 'o':
-					mapToChars[x][y] = new Player1(x,y);
+				case 'f':
+					mapObjects[x][y] = new Player1(x,y);
 					break;
-				case 't':
-					mapToChars[x][y] = new Player2(x,y);
+				case 's':
+					mapObjects[x][y] = new Player2(x,y);
 					break;
 				default:
 					break;
 				}
-				mapToChars[x][y].setMap(this);
+				mapObjects[x][y].setMap(this);
 			}
 		}
 	}
 	
 	public Entity[][] getArrayMap() {
-		return this.mapToChars;
+		return this.mapObjects;
 	}
 	
 	public Player1 getPlayer1() {
@@ -143,8 +143,8 @@ public class Map extends Entity {
 	}
 	
 	public void loop() {
-		boolean p1 = this.getPlayer1().getAlivePlayer1();
-		boolean p2 = this.getPlayer2().getAlivePlayer2();
+		boolean p1 = this.getPlayer1().getStatePlayer1();
+		boolean p2 = this.getPlayer2().getStatePlayer2();
 		if(p1 == true && p2 == true) {
 			this.getPlayer1().defaultDirection1();
 			this.getPlayer2().defaultDirection2();
